@@ -11,28 +11,14 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
   describe '一覧表示機能' do
-    # before do
-    #   task = FactoryBot.create(:task, name: 'test_name', content: 'コンテント')
-    # end
-    # context '一覧画面に遷移した場合' do
-    #   it '作成済みのタスク一覧が表示される' do
-    #     task = FactoryBot.create(:task, name: 'task')
-    #     visit tasks_path
-    #     expect(page).to have_content 'test_name'
-    #   end
-    # end
+    before do
+      task = FactoryBot.create(:task, name: 'test_name', content: 'コンテント')
+    end
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
-      # テストで使用するためのタスクを作成
         task = FactoryBot.create(:task, name: 'task')
-        # タスク一覧ページに遷移
         visit tasks_path
-        # visitした（遷移した）page（タスク一覧ページ）に「task」という文字列が
-        # have_contentされているか。（含まれているか。）ということをexpectする（確認・期待する）
-        # expect(page).to have_content 'task'
-        # わざと間違った結果を期待するテストを記載する
-        expect(page).to have_content 'task_failure'
-        # expectの結果が true ならテスト成功、false なら失敗として結果が出力される
+        expect(page).to have_content 'test_name'
       end
     end
   end
