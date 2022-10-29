@@ -22,6 +22,8 @@
 |status|integer|
 
 ##label
+|column|type|
+|:-----|:----:|
 |id|-|
 |user_id|-|
 |task_id|-|
