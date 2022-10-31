@@ -27,3 +27,12 @@
 |id|-|
 |user_id|-|
 |task_id|-|
+
+Herokuへのデプロイ手順
+heroku login
+heroku create
+heroku stack:set heroku-20
+bundle lock --add-platform x86_64-linux
+git add .
+git commit *****
+git push heroku *****:master
