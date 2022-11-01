@@ -16,6 +16,7 @@
     <% end %>
   </div>
 
+
 <% @tasks.each do |task| %>
   <tr>
     <td class="task_name"><%= task.name %></td>
@@ -25,11 +26,10 @@
     <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
     <td><%= link_to "ブログを編集する", edit_task_path(task.id) %></td>
     <td><%= link_to 'ブログを削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
-
   </tr>
 <% end %>
 </table>
-
+<%= paginate @tasks %>
 <%= link_to "終了期限でソートする", tasks_path(finish_expired: "true") %>
 <%= link_to "終了期限でソートする", tasks_path(priority_expired: "true") %>
 <%= link_to '新しくブログを投稿する', new_task_path %>
