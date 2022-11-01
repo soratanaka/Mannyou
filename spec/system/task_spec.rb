@@ -4,7 +4,6 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '作成したタスクが表示される' do
         task = FactoryBot.create(:task, name: '名前', content: 'コンテント', finish_on: '2022-10-30')
         visit tasks_path
-        # expect(page).to have_content '名前'
         expect(page).to have_content '2022-10-30'
       end
     end
@@ -45,7 +44,6 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe 'タスク管理機能', type: :system do
     describe '検索機能' do
       before do
-        # 必要に応じて、テストデータの内容を変更して構わない
         FactoryBot.create(:task, name: "task", status: "未着手")
         FactoryBot.create(:second_task, name: "sample", status: "完了")
       end
