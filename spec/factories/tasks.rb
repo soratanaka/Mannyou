@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :task do
     name { 'タスク１' }
     content { 'コンテント１' }
-    finish_on { '2022-10-30' }
+    finish_on { '2022-10-31' }
   end
   factory :second_task, class: Task do
     name { 'タスク２' }
