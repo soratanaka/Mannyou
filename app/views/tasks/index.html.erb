@@ -1,6 +1,6 @@
 <h1>タスク一覧</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>タイトル</th>
     <th>終了期限</th>
@@ -29,7 +29,9 @@
   </tr>
 <% end %>
 </table>
-<%= paginate @tasks %>
-<%= link_to "終了期限でソートする", tasks_path(finish_expired: "true") %>
-<%= link_to "終了期限でソートする", tasks_path(priority_expired: "true") %>
-<%= link_to '新しくブログを投稿する', new_task_path %>
+
+<%= paginate @tasks, theme: 'twitter-bootstrap-4' %>
+
+<%= link_to "終了期限でソートする", tasks_path(finish_expired: "true"), class:"btn btn-primary" %>
+<%= link_to "終了期限でソートする", tasks_path(priority_expired: "true"), class:"btn btn-primary" %>
+<%= link_to '新しくブログを投稿する', new_task_path, class:"btn btn-primary" %>
