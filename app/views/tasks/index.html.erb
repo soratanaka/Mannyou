@@ -5,6 +5,7 @@
     <th>タイトル</th>
     <th>終了期限</th>
     <th>ステータス</th>
+    <th>終了期限</th>
   </tr>
 
   <div class="search_form">
@@ -20,6 +21,7 @@
     <td class="task_name"><%= task.name %></td>
     <td class="task_on"><%= task.finish_on %></td>
     <td class="task_on"><%= task.status %></td>
+    <td class="task_on"><%= t(task.priority,scope:[:tasks,:index]) %></td>
     <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
     <td><%= link_to "ブログを編集する", edit_task_path(task.id) %></td>
     <td><%= link_to 'ブログを削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
@@ -28,5 +30,6 @@
 <% end %>
 </table>
 
-<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+<%= link_to "終了期限でソートする", tasks_path(finish_expired: "true") %>
+<%= link_to "終了期限でソートする", tasks_path(priority_expired: "true") %>
 <%= link_to '新しくブログを投稿する', new_task_path %>

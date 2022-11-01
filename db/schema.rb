@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_11_01_081813) do
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "finish_on", null: false
+    t.date "finish_on", default: -> { "now()" }, null: false
     t.string "status", default: "未着手", null: false
     t.integer "priority", default: 0, null: false
     t.index ["name"], name: "index_tasks_on_name"

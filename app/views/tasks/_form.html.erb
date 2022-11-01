@@ -27,7 +27,10 @@
     <%= form.label :status %>
     <%= form.select :status, [["未着手"], ["着手中"], ["完了"]], include_blank: "選択して下さい" %>
   </div>
-
+  <div class="task_priority">
+    <%= form.label :priority %>
+    <%= form.select :priority, options_for_select_from_enum(Task, :priority) %>
+  </div>
   <%= form.submit %>
 <% end %>
 

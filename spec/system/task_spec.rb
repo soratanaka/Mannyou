@@ -32,7 +32,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context 'タスクが終了期限の降順に並んでいる場合' do
       it '終了期限が遅いタスクが一番上に表示される' do
-        visit tasks_path(sort_expired: "true")
+        visit tasks_path(finish_expired: "true")
         task_list = all('.task_name') 
         expect(task_list[0]).to have_content "タスク１"
         expect(task_list[1]).to have_content "test_name"

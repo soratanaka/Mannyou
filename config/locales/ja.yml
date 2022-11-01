@@ -1,5 +1,16 @@
 ---
 ja:
+  enums:
+    task:
+      priority:
+        high: 高
+        middle: 中
+        low: 低
+  tasks:
+    index:
+      high: 高
+      middle: 中
+      low: 低
   activerecord:
     errors:
       messages:
