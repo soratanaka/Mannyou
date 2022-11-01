@@ -13,8 +13,15 @@ class TasksController < ApplicationController
       render :new
     end
   end
+
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    if params[:finish_expired]
+      @tasks = Task.all.order(finish_on: :desc).page(params[:page])
+    elsif params[:priority_expired]
+      @tasks = Task.all.order(priority: :asc).page(params[:page])
+    else
+      @tasks = Task.all.order(created_at: :desc).page(params[:page])
+    end
   end
 
   def show
@@ -40,10 +47,15 @@ class TasksController < ApplicationController
   redirect_to tasks_path, notice:"ブログを削除しました！"
   end
 
+  def search
+    @tasks = Task.looks(params[:status], params[:name_cont]).page(params[:page])
+  end
+  
+
 
   private
 
   def task_params
-    params.require(:task).permit(:name, :content)
+    params.require(:task).permit(:name, :content, :finish_on, :status, :priority)
   end
 end

@@ -35,6 +35,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rexml'
+  gem 'spring-commands-rspec'
+  gem 'launchy'
 end
 
 group :development do
@@ -56,3 +58,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
+gem 'bootstrap4-kaminari-views'
+gem 'bootstrap', '~> 4.1.1'
+gem 'mini_racer'
+gem 'jquery-rails'

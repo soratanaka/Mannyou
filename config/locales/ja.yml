@@ -1,5 +1,23 @@
 ---
 ja:
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."
+  enums:
+    task:
+      priority:
+        high: 高
+        middle: 中
+        low: 低
+  tasks:
+    index:
+      high: 高
+      middle: 中
+      low: 低
   activerecord:
     errors:
       messages:

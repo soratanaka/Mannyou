@@ -6,30 +6,25 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <header class="header clearfix">
+    <ul class="top_menu clearfix">
+      <li><%= link_to "タスク一覧", tasks_path ,class:'top_list'%></li>
+    </ul>
+  </header>
+      <div class="container">
       <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
-    <%
-=begin%>
- <% if logged_in? %>
-      <%= link_to "Profile", user_path(current_user.id) %>
-      <%= link_to "Logout", session_path(current_user.id), method: :delete %> 
-<%
-=end%>
-      <%= link_to "タスク一覧", tasks_path %>
-    <%
-=begin%>
- <% else %>
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
-    <% end %> 
-<%
-=end%>
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
+  <footer class="footer">
+    <p>Make Sora Tanaka from Dive InTo Code</p>
+  </footer>
 </html>
