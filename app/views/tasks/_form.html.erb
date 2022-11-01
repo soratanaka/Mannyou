@@ -19,6 +19,15 @@
     <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
+    <div class="task_finish_on">
+    <%= form.label :finish_on %>
+    <%= form.date_field :finish_on %>
+  </div>
+  <div class="task_status">
+    <%= form.label :status %>
+    <%= form.select :status, [["未着手"], ["着手中"], ["完了"]], include_blank: "選択して下さい" %>
+  </div>
+
   <%= form.submit %>
 <% end %>
 

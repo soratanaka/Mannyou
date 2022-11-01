@@ -2,9 +2,10 @@ require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
-        task = FactoryBot.create(:task, name: '名前', content: 'コンテント')
+        task = FactoryBot.create(:task, name: '名前', content: 'コンテント', finish_on: '2022-10-30')
         visit tasks_path
-        expect(page).to have_content '名前'
+        # expect(page).to have_content '名前'
+        expect(page).to have_content '2022-10-30'
       end
     end
   end
