@@ -2,9 +2,10 @@ require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
-        task = FactoryBot.create(:task, name: '名前', content: 'コンテント', finish_on: '2022-10-30')
+        task = FactoryBot.create(:task, name: '名前', content: 'コンテント', finish_on: '2022-10-30', priority:0)
         visit tasks_path
         expect(page).to have_content '2022-10-30'
+        expect(page).to have_content '高'
       end
     end
   end
@@ -12,7 +13,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     before do
       task = FactoryBot.create(:task)
       task = FactoryBot.create(:second_task)
-      task = FactoryBot.create(:task, name: 'test_name', content: 'コンテント', finish_on: '2022-10-30')
+      task = FactoryBot.create(:task, name: 'test_name', content: 'コンテント', finish_on: '2022-10-30', priority:0)
     end
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
@@ -36,6 +37,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         task_list = all('.task_name') 
         expect(task_list[0]).to have_content "タスク１"
         expect(task_list[1]).to have_content "test_name"
+        expect(task_list[2]).to have_content "タスク２"
+      end
+    end
+    context 'タスクが優先順位の降順に並んでいる場合' do
+      it '優先順位の高いタスクが一番上に表示される' do
+        visit tasks_path(priority_expired: "true")
+        task_list = all('.task_name') 
+        expect(task_list[0]).to have_content "test_name"
+        expect(task_list[1]).to have_content "タスク１"
         expect(task_list[2]).to have_content "タスク２"
       end
     end
