@@ -46,7 +46,7 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = Task.looks(params[:status], params[:word])
+    @tasks = Task.looks(params[:status], params[:name_cont])
   end
   
 
