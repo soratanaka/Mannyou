@@ -19,6 +19,9 @@
         <li><%= link_to "ログアウト", session_path(current_user.id), class:'top_list', method: :delete %></li>
         <li><%= link_to '新しく投稿', new_task_path ,class:'top_list' %></li>
         <li><%= link_to "タスク一覧", tasks_path ,class:'top_list'%></li>
+        <% if admin? %>
+        <li><%= link_to "ユーザー一覧", admin_users_path ,class:'top_list'%></li>
+        <% end %>
       </ul>
     <% else %>
       <ul class="top_menu clearfix">

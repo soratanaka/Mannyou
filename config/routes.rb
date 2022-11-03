@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resources :tasks do
     get :search, on: :collection
   end
+  get "/admin" => "admin/users#index"
+  namespace :admin do
+    resources :users
+  end
 end

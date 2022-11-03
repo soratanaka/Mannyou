@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def login_now
-    unless @current_user 
+    if @current_user 
       flash[:notice]="ログイン中です"
       redirect_to user_path(current_user.id)
     end
