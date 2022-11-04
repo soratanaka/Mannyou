@@ -6,6 +6,6 @@ module SessionsHelper
     current_user.present?
   end
   def admin?
-    current_user == @user || current_user.admin?
+    current_user.admin?
   end
 end
