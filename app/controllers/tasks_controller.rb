@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 #    @task.user_id = current_user.id 
     if @task.save
-      redirect_to tasks_path, notice: "ブログを作成しました！"
+      redirect_to tasks_path, notice: "タスクを作成しました！"
     else
       render :new
     end
@@ -16,11 +16,11 @@ class TasksController < ApplicationController
 
   def index
     if params[:finish_expired]
-      @tasks = Task.all.order(finish_on: :desc).page(params[:page])
+      @tasks = current_user.tasks.order(finish_on: :desc).page(params[:page])
     elsif params[:priority_expired]
-      @tasks = Task.all.order(priority: :asc).page(params[:page])
+      @tasks = current_user.tasks.order(priority: :asc).page(params[:page])
     else
-      @tasks = Task.all.order(created_at: :desc).page(params[:page])
+      @tasks = current_user.tasks.order(created_at: :desc).page(params[:page])
     end
   end
 
@@ -44,11 +44,11 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-  redirect_to tasks_path, notice:"ブログを削除しました！"
+    redirect_to tasks_path, notice:"ブログを削除しました！"
   end
 
   def search
-    @tasks = Task.looks(params[:status], params[:name_cont]).page(params[:page])
+    @tasks = current_user.tasks.looks(params[:status], params[:name_cont]).page(params[:page])
   end
   
 
@@ -56,6 +56,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :content, :finish_on, :status, :priority)
+    params.require(:task).permit(:name, :content, :finish_on, :status, :priority).merge(user_id:current_user.id)
   end
 end
