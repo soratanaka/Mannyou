@@ -1,0 +1,38 @@
+<h2>ユーザーを編集する</h2>
+
+<%= form_with(model: @user, url: admin_user_path ,local: true) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+      <ul>
+
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="user_name">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="user_email">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div class="user_password">
+    <%= form.label :password %>
+    <%= form.text_field :password %>
+  <div class="user_password_digest">
+    <%= form.label :password_confirmation %>
+    <%= form.text_field :password_confirmation %>
+  </div>
+  <div class="user_status">
+    <%= form.label :admin %>
+    <%= form.select :admin, [["一般ユーザー","false"], ["管理者ユーザー","true"]] %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<%= link_to "ユーザー一覧画面にもどる", admin_users_path %>
