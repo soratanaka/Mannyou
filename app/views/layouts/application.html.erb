@@ -10,29 +10,12 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <%
-=begin%>
- <% binding.pry %> 
-<%
-=end%>
+
   <body>
   <header class="header clearfix">
-      <% if logged_in? %>
-      <ul class="top_menu clearfix">
-        <li><%= link_to "マイページ", user_path(current_user.id) ,class:'top_list' %></li>
-        <li><%= link_to "ログアウト", session_path(current_user.id), class:'top_list', method: :delete %></li>
-        <li><%= link_to '新しく投稿', new_task_path ,class:'top_list' %></li>
-        <li><%= link_to "タスク一覧", tasks_path ,class:'top_list'%></li>
-        <% if admin? %>
-        <li><%= link_to "ユーザー一覧", admin_users_path ,class:'top_list'%></li>
-        <% end %>
-      </ul>
-    <% else %>
-      <ul class="top_menu clearfix">
-        <li><%= link_to "新規登録", new_user_path ,class:'top_list' %></li>
-        <li><%= link_to "ログイン", new_session_path ,class:'top_list' %></li>
-      </ul>
-    <% end %>
+    <ul class="top_menu clearfix">
+      <li><%= link_to "タスク一覧", tasks_path ,class:'top_list'%></li>
+    </ul>
   </header>
       <div class="container">
       <% flash.each do |key, value| %>
