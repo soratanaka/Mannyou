@@ -19,6 +19,8 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.order(finish_on: :desc).page(params[:page])
     elsif params[:priority_expired]
       @tasks = current_user.tasks.order(priority: :asc).page(params[:page])
+    elsif params[:label_id].present?
+      @tasks = Label.find(params[:label_id]).tasks.page(params[:page])
     else
       @tasks = current_user.tasks.order(created_at: :desc).page(params[:page])
     end
@@ -56,6 +58,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :content, :finish_on, :status, :priority).merge(user_id:current_user.id)
+    params.require(:task).permit(:name, :content, :finish_on, :status, :priority, label_ids: []).merge(user_id:current_user.id)
   end
 end

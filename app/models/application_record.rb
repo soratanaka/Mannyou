@@ -10,4 +10,5 @@ class ApplicationRecord < ActiveRecord::Base
       User.find(id).password_digest
     end
   end
+  
 end
