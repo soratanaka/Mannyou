@@ -19,8 +19,6 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.order(finish_on: :desc).page(params[:page])
     elsif params[:priority_expired]
       @tasks = current_user.tasks.order(priority: :asc).page(params[:page])
-    elsif params[:label_id].present?
-      @tasks = Label.find(params[:label_id]).tasks.page(params[:page])
     else
       @tasks = current_user.tasks.order(created_at: :desc).page(params[:page])
     end
@@ -50,7 +48,11 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = current_user.tasks.looks(params[:status], params[:name_cont]).page(params[:page])
+    if params[:label_id].present?
+      @tasks = Label.find(params[:label_id]).tasks.page(params[:page])
+    else
+      @tasks = current_user.tasks.looks(params[:status], params[:name_cont]).page(params[:page])
+    end
   end
   
 
