@@ -48,7 +48,11 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = current_user.tasks.looks(params[:status], params[:name_cont]).page(params[:page])
+    if params[:label_id].present?
+      @tasks = Label.find(params[:label_id]).tasks.page(params[:page])
+    else
+      @tasks = current_user.tasks.looks(params[:status], params[:name_cont]).page(params[:page])
+    end
   end
   
 
@@ -56,6 +60,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :content, :finish_on, :status, :priority).merge(user_id:current_user.id)
+    params.require(:task).permit(:name, :content, :finish_on, :status, :priority, label_ids: []).merge(user_id:current_user.id)
   end
 end

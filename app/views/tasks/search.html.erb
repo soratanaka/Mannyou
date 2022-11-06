@@ -2,6 +2,7 @@
 
 <table class="table">
   <tr>
+    <th>名前</th>
     <th>タイトル</th>
     <th>終了期限</th>
     <th>ステータス</th>
@@ -14,18 +15,27 @@
       <%= f.select :status, options_for_select([["未選択","unselected"], ["未着手"], ["着手中"],  ["完了"]]) , name: "status_cont"  %>
       <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
+  <%= form_tag  search_tasks_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :label_id,
+                    options_from_collection_for_select(Label.all, :id, :name, params[:label_id]),
+                    {
+                      prompt: 'タグで絞り込み検索',
+                      onchange: 'submit(this.form);'
+                    }
+      %>
+    <% end %>
   </div>
-
 
 <% @tasks.each do |task| %>
   <tr>
+    <td class="task_user_name"><%= task.user.name %></td>
     <td class="task_name"><%= task.name %></td>
     <td class="task_finish"><%= task.finish_on %></td>
     <td class="task_status"><%= task.status %></td>
     <td class="task_priority"><%= t(task.priority,scope:[:tasks,:index]) %></td>
     <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
-    <td><%= link_to "ブログを編集する", edit_task_path(task.id) %></td>
-    <td><%= link_to 'ブログを削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= link_to "タスクを編集する", edit_task_path(task.id) %></td>
+    <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
 <% end %>
 </table>
